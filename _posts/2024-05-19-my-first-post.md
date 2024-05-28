@@ -6,8 +6,22 @@ date: '2024-05-19 00:26:55 +0330'
 categories: [DSAGV]
 tags: [Scheduling Algorithms, Vehicle Routing Problem, Minimum Cost Flow, Network Simplex, Automated Guided Vehicles, Integer Programming, AGVs]
 ---
-
-In this post, we'll examine all important cpp files of DSAGV app, and then continue to explore ways to re-implement them in a state-of-the-art fashion!
+<head markdown=1>
+<style>
+    @font-face {
+        font-family: Vazirmatn;
+        src: url('/assets/fonts/Vazir-Thin-FD.woff');
+        font-style: normal;
+    }
+ #pers{
+    font-family: Vazirmatn;
+}
+</style>
+<div id="pers" markdown=1 style="direction:rtl; text-align:right;">
+</div>
+</head>
+In this post, we'll examine all important cpp files of DSAGV app, and then continue to explore ways to re-implement them in a state-of-the-art fashion.
+In order to make sense of the things I've written below, you need to **read comments before each method definition** in the related cpp source code.
 
 ## The structure of <code>PortApp1_0_10.cpp</code>
 The `PortApp1_0_10.cpp` file uses the following __forms__ and __translation units__:
@@ -90,6 +104,10 @@ long MCF_primal_net_simplex(MCF_network_p net)
 ```cpp
 void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 ```
+- Important method in `mcfmodel`: `Set_Table4_For_New_Schedule()`
+- `Container`, `Vehicle` and `Tour` of `HCDVRP` is used in `Intialize_SA_By_NSA_Solution()`!
+- `MCF_NSA_Solve(...)` from `MCFLIGHT1_0_6.cpp` and `Read_NSA_Solution(...)` is used in `RepairGraphModel(...)` in `MCFModel1_3.cpp`.
+
 
 ## The Job Generator <code>HCDVRP.cpp</code>
 
@@ -116,6 +134,10 @@ struct  Vehicle
 	int    Capacity;
         String StartLoc;
 };
+//Three Important properties in this file, used in other places.
+Container *CJob;
+Vehicle  *AGV;
+Tour     *TAGV,*TempT,*BestT;
 ```
 * It also generates __Trips, Tours,__ and __Destination information__.
 
@@ -128,7 +150,9 @@ struct  Vehicle
 
 ## Borland Paradox DB files
 - Your reference for tables is [this](https://docwiki.embarcadero.com/Libraries/Sydney/en/Bde.DBTables.TTable)
+- `TTables` are descendents of `TDataSets`, which is a virtual class.
 - Each DataBase file is most likely created and compiled into a file with `.dfm` extension.
+- `TTable.post()` writes a modified record to the database and `TTable.delete()` deletes the active record and positions the dataset on the next record.
 - To open DB files, download [this](https://github.com/amireza007/DSAGV/blob/main/PDXPlus.exe)
 - There are various tables, but **PortLayoutTable** is the one generated with the <a href="#the-job-generator-hcdvrpcpp"> HCDVRP.cpp </a>
 - `MCFAlgorithmForm->Table4` and `MCFAlgorithmForm->Table5` are `PortAGVTTable.DB` in the database.
@@ -136,11 +160,13 @@ struct  Vehicle
 - `PortContainerForm->Table1` and `PortContainerForm->Table2` are `PortContainerTable.db` in the database.
 - ` MCFAlgorithmForm->Table1` is `PortDoneJobTable.db` in database.
 - In BDE, `TTable` is the type for creating table objects.
+---
+- Comparing the three tables used mostly in `MCFModel1_3.cpp`, What I think of what the `portAGVTable.db`(AKA `MCFAlgorithmForm->Table4`) consists of is the combination of `portAGVTable.db` and `portContainer.db`, creating a dynamic table for manipulating container job schedules on demand (completely deleting and then re-constructing it).
 
 ## TODO List:
 - [x] `mcfdefs.h`, and `mcf.h`
 - [x] `PBLA1_3.cpp`, then `PSIMPLEX1_3.cpp`, and then `TREEUPS.cpp`
-- [ ] play with Borland's BDE!
+- [x] play with Borland's BDE!
 - [ ] `mcfutil.cpp`, `MCFLIGHT.cpp`, and `MCFModel`.
 - [ ] The Job Generator
 - [ ] `OUTPUT.cpp` as it is used by method `MCF_write_solution` in `MCFLIGHT.cpp`.
@@ -151,5 +177,5 @@ struct  Vehicle
   
 ## Unanswered Questions:
 - What is the use of `MCF_primal_iminus` (and hence `MCF_primal_net_simplex`)? what are jplus and iplus in them?
-- Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`?
+- Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`? (Maybe looking at `Set_Empty_Table4_For_Specific_Port(AnsiString PortNameStr)` in `MCFModel1_3.cpp` might help!)
 - Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??

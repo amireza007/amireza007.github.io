@@ -1,6 +1,9 @@
 ---
 ---
-
+@font-face {
+	font-family: "iranSans";
+	src: url("../assets/fonts/IRANSans.ttf");
+}
 @import 'main
 {%- if jekyll.environment == 'production' -%}
   .bundle
