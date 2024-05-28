@@ -6,20 +6,7 @@ date: '2024-05-19 00:26:55 +0330'
 categories: [DSAGV]
 tags: [Scheduling Algorithms, Vehicle Routing Problem, Minimum Cost Flow, Network Simplex, Automated Guided Vehicles, Integer Programming, AGVs]
 ---
-<head markdown=1>
-<style>
-    @font-face {
-        font-family: Vazirmatn;
-        src: url('/assets/fonts/Vazir-Thin-FD.woff');
-        font-style: normal;
-    }
- #pers{
-    font-family: Vazirmatn;
-}
-</style>
-<div id="pers" markdown=1 style="direction:rtl; text-align:right;">
-</div>
-</head>
+
 In this post, we'll examine all important cpp files of DSAGV app, and then continue to explore ways to re-implement them in a state-of-the-art fashion.
 In order to make sense of the things I've written below, you need to **read comments before each method definition** in the related cpp source code.
 
@@ -107,7 +94,7 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 - Important method in `mcfmodel`: `Set_Table4_For_New_Schedule()`
 - `Container`, `Vehicle` and `Tour` of `HCDVRP` is used in `Intialize_SA_By_NSA_Solution()`!
 - `MCF_NSA_Solve(...)` from `MCFLIGHT1_0_6.cpp` and `Read_NSA_Solution(...)` is used in `RepairGraphModel(...)` in `MCFModel1_3.cpp`.
-
+- `DBGrid4` is the **AGV table** in the **Solution** groupbox.
 
 ## The Job Generator <code>HCDVRP.cpp</code>
 
@@ -179,3 +166,9 @@ Tour     *TAGV,*TempT,*BestT;
 - What is the use of `MCF_primal_iminus` (and hence `MCF_primal_net_simplex`)? what are jplus and iplus in them?
 - Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`? (Maybe looking at `Set_Empty_Table4_For_Specific_Port(AnsiString PortNameStr)` in `MCFModel1_3.cpp` might help!)
 - Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??
+
+
+## Shortcomings of the DSAGV
+
+- The App resets form sizes after close.
+- App opens multiple windows for different forms, why?!
