@@ -69,7 +69,7 @@ extern long MCF_primal_net_simplex (MCF_network_p net);
 **Please note that the comments ("_documentation_") are actually good and pretty important in these two cpp files!**
 
  ## <code>PBLA1_3.cpp</code>, <code>PXIMPLEX1_3.cpp</code>, <code>TREEUPS.cpp</code>, <code>MCFLIGHT1_0_6.cpp</code>
-- <a href="#pbla1_3cpp-and-psimplexcpp">`PBLA`</a> and <a href="#pbla1_3cppp-and-psimplexcpp">`PSIMPLEX1_3`</a> and <a href="#mcfutilcpp-mcflight1_0_6cpp-and-mcfmodel1_3cpp">`MCFLIGHT1_0_6`</a> are closely related! There are some useful comments in them, none of which I understand as I still haven't reviewed the mcf problem and NSA algorithm thoroughly.
+- <a href="#pbla1_3cpp-and-psimplexcpp">`PBLA`</a> and <a href="#pbla1_3cpp-and-psimplexcpp">`PSIMPLEX1_3`</a> and <a href="#mcfutilcpp-mcflight1_0_6cpp-and-mcfmodel1_3cpp">`MCFLIGHT1_0_6`</a> are closely related! There are some useful comments in them, none of which I understand as I still haven't reviewed the mcf problem and NSA algorithm thoroughly.
 
 ## <code>PBLA1_3.cpp</code> and <code>PSIMPLEX.cpp</code>
 - The `PBLA` (which most likely stands for "problem of best leaving arc") only contains the _mysterious_:
