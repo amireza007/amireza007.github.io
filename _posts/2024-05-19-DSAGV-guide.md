@@ -45,7 +45,7 @@ USEUNIT("PBLA1_3.cpp");
 USEUNIT("MCFLIGHT1_0_6.Cpp");
 USEUNIT("PSTART.cpp");
 ```
-- Note that the keyword `extern` (explained [here](https://learn.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp?view=msvc-170)) is used for _private global variables (or external linkage)._ It is not necessary for __free functions__ and __non-const variables__. The `extern` keyword is used in `"MCFModel1_3.cpp"` to reference `MCF_NSA_Solve(...)` method defined in `"MCFLIGHT1_0_6.Cpp"`.
+- Note that the keyword `extern` (explained [here](https://learn.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp?view=msvc-170)) is used for _private global variables (or external linkage)._ It is not necessary for __free functions__ and __non-const variables__. The `extern` keyword is used in `"MCFModel1_3.cpp"` to reference `MCF_NSA_Solve(...)` method defined in `MCFLIGHT1_0_6.Cpp`.
 - Remember that the **`portdatabase`** is in the **`Openport.cpp`**.
 - I might need `mcfutil` for the implementation of the nodes
 
@@ -182,7 +182,9 @@ Tour     *TAGV,*TempT,*BestT;
   5. find and replace e'm
   6. do the same for the .h file and hit save
   7. close the cpp file from the winxp + reopen it + reload + rebuild project
+
 - To identify a "missing" UI component, use the `view as text` option on the by right-clicking, in order to modify the corresponding `delphi` file.
+
 ---
 ## TODO List:
 - [x] `mcfdefs.h`, and `mcf.h`
