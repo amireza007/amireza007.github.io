@@ -11,7 +11,7 @@ In this post, we'll examine all important cpp files of DSAGV app, and then conti
 In order to make sense of the things I've written below, you need to **read comments before each method definition** in the related cpp source code.
 
 #### The link to the ***trello*** is [here](https://trello.com/b/aES1H8Bv/dsagv).
-
+#### *In the future, I will move into the `doxygen` for better documentation!*
 ## The structure of <code>PortApp1_0_10.cpp</code>
 The `PortApp1_0_10.cpp` file uses the following __forms__ and __translation units__:
 ```c++
