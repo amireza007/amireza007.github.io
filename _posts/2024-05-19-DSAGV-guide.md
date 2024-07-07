@@ -115,7 +115,7 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 - In `openport`, there is the **`PortTable`** that's referenced in `portAGV`, `PortContainer`, `PortLayout`, and `MCFModel1_3`.
 
 ---
-## The Job Generator <code>HCDVRP.cpp</code>
+## <code>HCDVRP.cpp</code>
 
 `HCDVRP` consists of:
 - AGV simulation (such as its properties, its actions) + Container simulation.
@@ -145,8 +145,17 @@ Container *CJob;
 Vehicle  *AGV;
 Tour     *TAGV,*TempT,*BestT;
 ```
-* It also generates __Trips, Tours,__ and __Destination information__.
 
+- It also generates __Trips, Tours,__ and __Destination information__.
+- It's declared as `VRP_2` in `MCFModel1_3`.
+
+---
+
+## The Job Generator (`PortLayout.cpp`)
+
+- This is the Famous Job Generator, building the container jobs that should be carried out from a source to a destination.
+- It modified the **`PortLayoutTable`** db.
+  
 ---
 
 ## Miscellaneous Notes
@@ -192,10 +201,9 @@ Tour     *TAGV,*TempT,*BestT;
 - [x] play with Borland's BDE!
 - [x] Rename buttons and everything to their associated captions
 - [ ] `mcfutil.cpp`, `MCFLIGHT.cpp`, and `MCFModel`.
-- [ ] The Job Generator
-- [ ] `OUTPUT.cpp` as it is used by method `MCF_write_solution` in `MCFLIGHT.cpp`.
-- [ ] `PortLayout`
-- [ ] the functionalities of `MCFModel` 
+- [x] The Job Generator (`portLayout.cpp`)
+- [x] `OUTPUT.cpp` as it is used by method `MCF_write_solution` in `MCFLIGHT.cpp`.
+- [x] the functionalities of `MCFModel`
 - [ ] `PREPAIR`
 - [ ] `PortBenchmark`, which is mostly a UI thing.
   
