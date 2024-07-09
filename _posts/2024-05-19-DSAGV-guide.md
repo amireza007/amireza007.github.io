@@ -96,7 +96,7 @@ long MCF_primal_net_simplex(MCF_network_p net);
 ## <code>Mcfutil.cpp</code>, <code>MCFLIGHT1_0_6.cpp</code>, and <code>MCFModel1_3.cpp</code>
 - portappdatabase is updated within MCFModel1_3.cpp.
 - `MCFModel1_3` uses a header file, called **`Global.h`**, which contains strtuctures `Port_Buff`, `Container_Buff[Maximum_Container_Jobs]`, `Crane_Buff[Maximum_Number_Cranes]`, `Job_Crane_Buff[Maximum_Number_Cranes]`, `Vehicle_Buff[Maximum_Number_Vehicles]`, `Route_Buff[Maximum_Number_Junctions];`, `Route_Buff2[Maximum_Number_Lanes]`
-- The part that uses <a href="#the-job-generator-hcdvrpcpp">`HCDVRP` </a>
+- The part that uses <a href="#the-job-generator-portlayoutcpp">`HCDVRP` </a>
 ```c++
 void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 ```
@@ -172,7 +172,7 @@ Tour     *TAGV,*TempT,*BestT;
 - `TTables` are descendents of `TDataSets`, which is a virtual class.
 - `TTable.post()` writes a modified record to the database and `TTable.delete()` deletes the active record and positions the dataset on the next record.
 - To open DB files, download [this](https://github.com/amireza007/DSAGV/blob/main/PDXPlus.exe)
-- There are various tables, but **PortLayoutTable** is the one generated with the <a href="#the-job-generator-hcdvrpcpp"> HCDVRP.cpp </a>
+- There are various tables, but **PortLayoutTable** is the one generated with the <a href="#the-job-generator-portlayoutcpp"> HCDVRP.cpp </a>
 - `MCFAlgorithmForm->Table4` and `MCFAlgorithmForm->Table5` are `PortAGVTTable.DB` in the database.
 - `PortAGVForm->Table2` and `PortAGVForm->Table1` are `portAGVTable.db` in the database. 
 - `PortContainerForm->Table1` and `PortContainerForm->Table2` are `PortContainerTable.db` in the database.
