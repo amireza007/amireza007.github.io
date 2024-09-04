@@ -16,7 +16,7 @@ In this, I'll be writing about the things I've learned during implementing the U
 - an [example](https://doc.qt.io/qt-6/qtdesigner-customwidgetplugin-example.html) of custom plugin
 - https://doc.qt.io/qt-6/qt-add-plugin.html
 - [qt_add_plugin]()
-  
+
 ---
 
 ### Useful Videos:
