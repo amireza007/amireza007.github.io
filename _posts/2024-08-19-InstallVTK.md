@@ -23,6 +23,6 @@ tags: [QT, VTK]
 ---
 
 ## Integration process
-- In order to actually be able to use the vtk in a project, you need to set up the `CMakeLists.txt`. I can be done inside the QtCreator (under the `projects` settings) or outside it from the cmake-gui (the same process.)
+- In order to actually be able to use the vtk in a project, you need to set up the `CMakeLists.txt`. I can be done inside the QtCreator (under the `projects` setdxtings) or outside it from the cmake-gui (the same process.)
 - In either cases, you need to make the vtk be known to the cmake. You can call the tool by defining a path entry, called `VTK_DIR` and assign it the value of `VTK_DIR` variable, defined earlier. 
 - Then run the cmake. And Enjoy using VTK on Qt Projects!
