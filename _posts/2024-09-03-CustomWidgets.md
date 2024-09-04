@@ -14,8 +14,7 @@ In this, I'll be writing about the things I've learned during implementing the U
 - For distinguishing between Qt plugin and Widget: [this](https://doc.qt.io/qt-5/plugins-howto.html)
 - This one is useful for general Qt, providing all **Macros** used in custom classes. [This](https://doc.qt.io/qt-6/functions.html)
 - an [example](https://doc.qt.io/qt-6/qtdesigner-customwidgetplugin-example.html) of custom plugin
-- https://doc.qt.io/qt-6/qt-add-plugin.html
-- [qt_add_plugin]()
+- [qt_add_plugin](https://doc.qt.io/qt-6/qt-add-plugin.html)
 
 ---
 
