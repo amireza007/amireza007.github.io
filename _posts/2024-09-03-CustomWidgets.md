@@ -15,7 +15,7 @@ In this, I'll be writing about the things I've learned during implementing the U
 - This one is useful for general Qt, providing all **Macros** used in custom classes. [This](https://doc.qt.io/qt-6/functions.html)
 - an [example](https://doc.qt.io/qt-6/qtdesigner-customwidgetplugin-example.html) of custom plugin
 - [qt_add_plugin](https://doc.qt.io/qt-6/qt-add-plugin.html)
-- Did you know you can start `Qt-Creator` from **Command Line**.
+- Did you know you can start `Qt-Creator` from **Command Line**. You can use this to set custom plugin paths for **qt designer** plugin in **qt creator**.
  
     ```
     \path\to\qt\installation_Directory\Tools\QtCreator\bin\qtcreator.exe -h
