@@ -25,4 +25,11 @@ In this, I'll be writing about the things I've learned during implementing the U
 ### Useful Videos:
 - [Custom Widget in Qt, Iranian Guy](https://www.youtube.com/watch?v=2AiWla1cc6Q)
 - [A more Practical Video, fat Guy](https://www.youtube.com/watch?v=RyJqcw0RXxk)
-- 
+
+### Useful Tricks
+- Use `<alt><shift>r` to view your widget's `[preview]`, kinda works like `Qml Live`.
+
+
+### Recipe for making custom widgets:
+1. 
+2. 
