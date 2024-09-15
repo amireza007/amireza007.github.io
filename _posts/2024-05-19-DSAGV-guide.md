@@ -217,3 +217,13 @@ Tour     *TAGV,*TempT,*BestT;
 
 - The App resets form sizes after close.
 - App opens multiple windows for different forms, why?!
+
+## Some C++ Builder 5 tips:
+-  when opening a builder project, move cursor on a resource and right click and select `open file under cursor` to open the corresponding file, in place!
+- a way of printing bugs! **stupid Builder 5!!!!!**
+  ```c++
+  std::stringstream ss;
+  ss << Port_Buff.NumberOfAGVs;
+  std::string str = ss.str();
+  Application->MessageBox(str.c_str(),"bug",MB_OK);
+  ```

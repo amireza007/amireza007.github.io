@@ -20,6 +20,8 @@ In this, I'll be writing about the things I've learned during implementing the U
     ```
     \path\to\qt\installation_Directory\Tools\QtCreator\bin\qtcreator.exe -h
     ```
+- For adding the ui file to a class and `.h` file in the project directory, **You kneed to promote the plugin/custom widget in `QT-Designer` to that class**
+
 ---
 
 ### Useful Videos:
