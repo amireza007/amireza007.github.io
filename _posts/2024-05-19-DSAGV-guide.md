@@ -206,15 +206,11 @@ Tour     *TAGV,*TempT,*BestT;
 - [x] the functionalities of `MCFModel`
 - [ ] `PREPAIR`
 - [ ] `PortBenchmark`, which is mostly a UI thing.
-  
-## Unanswered Questions:
-- What is the use of `MCF_primal_iminus` (and hence `MCF_primal_net_simplex`)? what are jplus and iplus in them?
-- Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`? (Maybe looking at `Set_Empty_Table4_For_Specific_Port(AnsiString PortNameStr)` in `MCFModel1_3.cpp` might help!)
-- Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??
 
+## Bugs:
+- There is a bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method.
 
 ## Shortcomings of the DSAGV
-
 - The App resets form sizes after close.
 - App opens multiple windows for different forms, why?!
 
@@ -227,3 +223,13 @@ Tour     *TAGV,*TempT,*BestT;
   std::string str = ss.str();
   Application->MessageBox(str.c_str(),"bug",MB_OK);
   ```
+
+## Some tips on implementing MDSAGV:
+- exclude these files when global searching in **VS Code**: `*.~cpp, *.~h, *.dsk, MCFModel.cpp,MCFModel2.cpp,MCFModel1_2.cpp`
+
+ 
+## Unanswered Questions:
+- What is the use of `MCF_primal_iminus` (and hence `MCF_primal_net_simplex`)? what are jplus and iplus in them?
+- Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`? (Maybe looking at `Set_Empty_Table4_For_Specific_Port(AnsiString PortNameStr)` in `MCFModel1_3.cpp` might help!)
+- Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??
+
