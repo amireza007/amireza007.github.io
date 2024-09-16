@@ -30,7 +30,7 @@ In this, I'll be writing about the things I've learned during implementing the U
 
 ### Useful Tricks
 - Use `<alt><shift>r` to view your widget's `[preview]`, kinda works like `Qml Live`.
-
+- for using `_s` string formats, see this [https://doc.qt.io/qt-6/qt-literals-stringliterals.html](https://doc.qt.io/qt-6/qt-literals-stringliterals.html)
 
 ### Recipe for making custom widgets:
 1. 
