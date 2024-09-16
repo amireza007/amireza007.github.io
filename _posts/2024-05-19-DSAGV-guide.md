@@ -208,7 +208,9 @@ Tour     *TAGV,*TempT,*BestT;
 - [ ] `PortBenchmark`, which is mostly a UI thing.
 
 ## Bugs:
-- There is a bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method.
+1. There is a bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method
+   - **Fix**: changed the `Maximum_Number_Vehicles` from 50 to 250
+2. 
 
 ## Shortcomings of the DSAGV
 - The App resets form sizes after close.
