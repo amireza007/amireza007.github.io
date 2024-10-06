@@ -96,7 +96,7 @@ long MCF_primal_net_simplex(MCF_network_p net);
 ## <code>Mcfutil.cpp</code>, <code>MCFLIGHT1_0_6.cpp</code>, and <code>MCFModel1_3.cpp</code>
 - portappdatabase is updated within MCFModel1_3.cpp.
 - `MCFModel1_3` uses a header file, called **`Global.h`**, which contains strtuctures `Port_Buff`, `Container_Buff[Maximum_Container_Jobs]`, `Crane_Buff[Maximum_Number_Cranes]`, `Job_Crane_Buff[Maximum_Number_Cranes]`, `Vehicle_Buff[Maximum_Number_Vehicles]`, `Route_Buff[Maximum_Number_Junctions];`, `Route_Buff2[Maximum_Number_Lanes]`
-- The part that uses <a href="#the-job-generator-portlayoutcpp">`HCDVRP` </a>
+- The part that uses`HCDVRP` </a>
 ```c++
 void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 ```
