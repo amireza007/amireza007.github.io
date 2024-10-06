@@ -115,7 +115,7 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 - In `openport`, there is the **`PortTable`** that's referenced in `portAGV`, `PortContainer`, `PortLayout`, and `MCFModel1_3`.
 
 ---
-## <code>HCDVRP.cpp</code>
+## <code>HCDVRP.cpp</code> the job generator
 
 `HCDVRP` consists of:
 - AGV simulation (such as its properties, its actions) + Container simulation.
@@ -151,11 +151,14 @@ Tour     *TAGV,*TempT,*BestT;
 
 ---
 
-## The Job Generator (`PortLayout.cpp`)
+## `PortLayout.cpp`
 
-- This is the Famous Job Generator, building the container jobs that should be carried out from a source to a destination.
-- It modified the **`PortLayoutTable`** db.
-  
+- I really don't understand what the use of this *really* is. I guess, it just **loads information about ports (using `openport.cpp`) and the distance of each AGV and 
+- It modifies the **`PortLayoutTable`** db.
+- It then shows them in the "Route Table", specifying consecutive junction location and *TimeLanes*(??)
+- It also specifi
+---
+
 ---
 
 ## Miscellaneous Notes
@@ -179,6 +182,21 @@ Tour     *TAGV,*TempT,*BestT;
 - ` MCFAlgorithmForm->Table1` is `PortDoneJobTable.db` in database.
 - **In BDE, `TTable` is the type for creating table objects.**
 - Comparing the three tables used mostly in `MCFModel1_3.cpp`, What I think of what the `portAGVTable.db`(AKA `MCFAlgorithmForm->Table4`) consists of is the combination of `portAGVTable.db` and `portContainer.db`, creating a dynamic table for manipulating container job schedules on demand (completely deleting and then re-constructing it).
+
+---
+
+## More on Databases used in the program
+<u>9 Databases</u> is used in the program. We'll talk more about from which files they are **created** and **accessed** and **modified**!
+1. `AlgorithmTable.db`
+2. `PortAGVTable.db` and `PortAGVTTable.db`
+3. `PortContainerTable.db`: 
+4. `PortDoneJobTable.db`
+5. `PortLayoutTable.db`
+6. `PortRouteTable.db`: It specifies **Location of Junctions (تقاطع)** in each port. 
+     - Modified in: `PortLayout.cpp` by the method `BitBtn2Click`
+7. `PortStatusJobTable.db`
+8. `PortTable.db`
+
 
 ---
 
@@ -234,4 +252,4 @@ Tour     *TAGV,*TempT,*BestT;
 - What is the use of `MCF_primal_iminus` (and hence `MCF_primal_net_simplex`)? what are jplus and iplus in them?
 - Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`? (Maybe looking at `Set_Empty_Table4_For_Specific_Port(AnsiString PortNameStr)` in `MCFModel1_3.cpp` might help!)
 - Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??
-
+- (***Very Important Question):*** How **container jobs** **database (PortContainerTable.db)** is created and updated??
