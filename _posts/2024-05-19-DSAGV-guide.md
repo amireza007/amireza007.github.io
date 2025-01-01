@@ -114,8 +114,15 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 ## `openport.cpp`, `portAGV.cpp`, `PortLayout` and `PortContainer.cpp`
 - In `openport`, there is the **`PortTable`** that's referenced in `portAGV`, `PortContainer`, `PortLayout`, and `MCFModel1_3`.
 
+## Job generator:
+- It's in a `MCFModel1_3.cpp` method:
+  ```c++
+  void __fastcall TMCFAlgorithmForm::Generate_ButtonClick(TObject *Sender)
+  ```
+- If you right click on **Port and COntainer Job (static)** Form, you will find a `PopupMenu1` with two items `Generate Schedule` and `Reset Schedule`. `Generate Schedule` Event points to the above cpp line! WHY?? 
+
 ---
-## <code>HCDVRP.cpp</code> the job generator
+## <code>HCDVRP.cpp</code> Simulator
 
 `HCDVRP` consists of:
 - AGV simulation (such as its properties, its actions) + Container simulation.
@@ -253,3 +260,4 @@ Tour     *TAGV,*TempT,*BestT;
 - Why are there 2 tables pointing to _the same DB_ in `PortAGV.cpp` and `PortContainer.cpp`? (Maybe looking at `Set_Empty_Table4_For_Specific_Port(AnsiString PortNameStr)` in `MCFModel1_3.cpp` might help!)
 - Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??
 - (***Very Important Question):*** How **container jobs** **database (PortContainerTable.db)** is created and updated??
+- It's interesting, When you run the installed app, the solutions are displayed. However, when you compile the version 10, no solutions are appeared!
