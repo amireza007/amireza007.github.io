@@ -261,3 +261,7 @@ Tour     *TAGV,*TempT,*BestT;
 - Not sure why there are so many `MCFAlgorithmForm->Table4->Delete();` in `MCFModel1_3`? it deletes them, and the loop ends, at the end of the method, `MCFAlgorithmForm->Table4->refresh()`gets called!! why??
 - (***Very Important Question):*** How **container jobs** **database (PortContainerTable.db)** is created and updated??
 - It's interesting, When you run the installed app, the solutions are displayed. However, when you compile the version 10, no solutions are appeared!
+
+## Update:
+I have switched to a very old commit of repo since `.dfm` files are binary and, hence, un-nameable!! Many names, (tables, lables, buttons, etc) are now deleted and should be found according to their context.
+
