@@ -263,5 +263,4 @@ Tour     *TAGV,*TempT,*BestT;
 - It's interesting, When you run the installed app, the solutions are displayed. However, when you compile the version 10, no solutions are appeared!
 
 ## Update:
-I have switched to a very old commit of repo since `.dfm` files are binary and, hence, un-nameable!! Many names, (tables, lables, buttons, etc) are now deleted and should be found according to their context.
-
+I have switched to a very old commit of repo since `.dfm` files used in this *era* are binary (newer versions aren't!) and, hence, un-nameable!! Many names, (tables, lables, buttons, etc) are now deleted and should be found according to their context.
