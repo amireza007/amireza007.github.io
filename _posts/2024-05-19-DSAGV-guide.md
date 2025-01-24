@@ -268,3 +268,4 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 ## Update 1/23/22025:
 - The method associated to `Button11`, which is **Generate** button in static fashion, is the **Heart of the `MCFModel1_3.cpp` file** containing the schedule generation for the job and connecting all previously written methods in `MCFModel1_3.cpp`.
 - Similarly, there is `Button7Click`, which is the intention of Dr. Rashidi to give out the source code. 
+- In **static** fashion, the data (container jobs, the network graph and number of QCs and AGVs) are fed into a method named `MCF_NSA_Solve` in the button11click method of `MCFModel1_3.cpp` .
