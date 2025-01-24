@@ -268,4 +268,9 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 ## Update 1/23/22025:
 - The method associated to `Button11`, which is **Generate** button in static fashion, is the **Heart of the `MCFModel1_3.cpp` file** containing the schedule generation for the job and connecting all previously written methods in `MCFModel1_3.cpp`.
 - Similarly, there is `Button7Click`, which is the intention of Dr. Rashidi to give out the source code. 
-- In **static** fashion, the data (container jobs, the network graph and number of QCs and AGVs) are fed into a method named `MCF_NSA_Solve` in the button11click method of `MCFModel1_3.cpp` .
+- In **static** fashion, the data (container jobs, the network graph and number of QCs and AGVs) are fed into a method named `MCF_NSA_Solve` in the button11click method of `MCFModel1_3.cpp` . The output is the either 0,1,-1, with 0 being success. 
+- **The reason why we don't see generated jobs:** because they are not generated as there is a line in the `MCFModel1_3`, in **button11Click** method, written as: 
+  ```c++
+  bool b = PortContainerForm->Table1->Locate("Portname", VarArrayOf(locvalues, 0), Opts);
+  ```
+  This code basically tell the program to not generate the jobs, if the port name exists in the `PortContainerTable.DB`, which is not an interesting trait!! <br>At least the original coder could've written some comments, telling "If you like to generate it, set this bool to false yourself". **NOT COOL!**
