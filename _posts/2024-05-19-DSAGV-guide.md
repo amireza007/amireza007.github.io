@@ -274,3 +274,177 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
   bool b = PortContainerForm->Table1->Locate("Portname", VarArrayOf(locvalues, 0), Opts);
   ```
   This code basically tell the program to not generate the jobs, if the port name exists in the `PortContainerTable.DB`, which is not an interesting trait!! <br>At least the original coder could've written some comments, telling "If you like to generate it, set this bool to false yourself". **NOT COOL!**
+
+## The structure of MCFNet:
+```C++
+  struct MCF_network
+{
+    /** Number of nodes.
+     *
+     * This variable stands for the number of originally defined nodes without
+     * the artificial root node.
+     *
+     */
+    long n;
+
+
+    /** Number of arcs.
+     *
+     * This variable stands for the number of arcs (without the artificial slack
+     * arcs).
+     *
+     */
+    long m;
+
+    /** Options for candidate arc group.
+     *
+     * This variable will be set to 0 (Fixed candidate group) or 1 (Random Candidate Group)
+     *
+*/
+    int algorithm_opt;
+
+    /** Block size of the model.
+     *
+     * This variable will be set to the size of block in arcs calssification.
+     *
+*/
+    int block_size;
+
+    /** CPU time to solve the model.
+     *
+     * This variable will be set to the consumed time to solve the moedl, iff the model is fesaible.
+     *
+*/
+    double cpu_time;
+
+    /** maximum cost of arcs in the model.
+     *
+     * This variable will be set to maximum cost in the model.
+     *
+*/
+    long max_cost;
+
+    /** the arc in maximum cost.
+     *
+     *
+     */
+    MCF_arc_p max_cost_arc;
+
+
+    /** Primal unbounded indicator.
+     *
+     * This variable is set to one iff the problem is determined to be primal
+     * unbounded.
+     *
+*/
+    long primal_unbounded;
+
+
+    /** Dual unbounded indiciator.
+     *
+     * This variable is set to one iff the problem is determined to be dual
+     * unbounded.
+     *
+     */
+    long dual_unbounded;
+
+
+    /** Feasible indicator.
+     *
+     * This variable is set to zero if the problem provides a feasible solution.
+     * It can only be set by the function primal\_feasible() or dual\_feasible()
+     * and is not set automatically by the optimization.
+     *
+     */
+    long feasible;
+
+    /** Costs of current basis solution.
+     *
+     * This variable stands for the costs of the current (primal or dual) basis
+     * solution. It is set by the return value of primal\_obj() or dual\_obj().
+     *
+     */
+    double optcost;
+
+
+    /** Vector of nodes.
+     *
+     * This variable points to the $n+1$ node structs (including the root node)
+     * where the first node is indexed by zero and represents the artificial
+     * root node.
+     * 
+     */
+    MCF_node_p nodes;
+
+
+    /** First infeasible node address.
+     *
+     * This variable is the address of the first infeasible node address,
+     * i.\,e., it must be set to $nodes + n + 1$.
+     *
+     */
+    MCF_node_p stop_nodes;
+
+
+    /** Vector of arcs.
+     *
+     * This variable points to the $m$ arc structs.
+     *
+     */
+    MCF_arc_p arcs;
+
+
+    /** First infeasible arc address.
+     *
+     * This variable is the address of the first infeasible arc address, i.\,e.,
+     * it must be set to $nodes + m$. 
+     *
+     */
+    MCF_arc_p stop_arcs;
+
+
+    /** Vector of artificial slack arcs.
+     *
+     * This variable points to the artificial slack (or dummy) arc variables and
+     * contains $n$ arc structs.  The artificial arcs are used to build (primal)
+     * feasible starting bases. For each node $i$, there is exactly one dummy
+     * arc defined to connect the node $i$ with the root node.
+     * */
+    MCF_arc_p dummy_arcs;
+
+
+    /** First infeasible slack arc address.
+     *
+     * This variable is the address of the first infeasible slack arc address,
+     * i.\,e., it must be set to $nodes + n$. 
+     *
+     */
+    MCF_arc_p stop_dummy; 
+
+
+    /** Iteration count.
+     *
+     * This variable contains the number of main simplex iterations performed to
+     * solve the problem to optimality.
+     * 
+     */
+    long iterations;
+
+
+    /** Dual pricing rule.
+     *
+     * Pointer to the dual pricing rule function that is used by the dual
+     * simplex code.
+     * */
+    MCF_node_p (*find_iminus) ( long n, MCF_node_p nodes, 
+                                MCF_node_p stop_nodes, MCF_flow_p delta );//this is not used anywhere in the codes!
+    /** Primal pricing rule.
+     *
+     * Pointer to the primal pricing rule function that is used by the primal
+     * simplex code.
+     * */
+    MCF_arc_p (*find_bea) ( MCF_arc_p max_cost_arc, int algorithm_opt,long m, MCF_arc_p arcs, MCF_arc_p stop_arcs,
+                            MCF_cost_p red_cost_of_bea );
+};
+
+```
