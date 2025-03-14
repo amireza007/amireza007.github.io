@@ -6,10 +6,12 @@ categories: [software development]
 tags: [Build systems, qt, cmake]
 ---
 
-# A recipe for a basic working `CmakeLists.txt`
+*You'll never become a better C++ programmer if you can't work well with cmake. ~Me*
 
 ## General Tips:
 - First of all, be careful about the case sensitivity of cmake. **All arguments-the things coming between paranthesis- are case sensitive.**
+- For being able to see the console output, you need to add `WIN_EXECTUABLE` to `False` inside the  `set_target_properties`.
+- I like this [github.io](https://enccs.github.io/cmake-workshop/targets/) page on the cmake tutorial.
 
 ## Qt Basic code steps:
 1. `project(NAME LANGUAGES CXX)`: you need to specify a name for the project and the language of the source files it includes. cxx is an older name for cpp.
@@ -24,3 +26,4 @@ tags: [Build systems, qt, cmake]
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )`**
+
