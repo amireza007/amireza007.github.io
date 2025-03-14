@@ -10,7 +10,7 @@ tags: [Build systems, qt, cmake]
 
 ## General Tips:
 - First of all, be careful about the case sensitivity of cmake. **All arguments-the things coming between paranthesis- are case sensitive.**
-- For being able to see the console output, you need to add `WIN_EXECTUABLE` to `False` inside the  `set_target_properties`.
+- For being able to see the console output (`std::cout`) in your **QtCreator** environment, you need to add `WIN_EXECTUABLE` to `False` inside the  `set_target_properties`.
 - I like this [github.io](https://enccs.github.io/cmake-workshop/targets/) page on the cmake tutorial.
 
 ## Qt Basic code steps:
