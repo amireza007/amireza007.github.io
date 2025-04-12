@@ -178,6 +178,7 @@ Tour     *TAGV,*TempT,*BestT;
 ---
 
 ## Borland Paradox DB files
+- **For edditting Paradox DB files**: use `pdxEditor` in the GDrive.
 - Your reference for tables is [this](https://docwiki.embarcadero.com/Libraries/Sydney/en/Bde.DBTables.TTable)
 - `TTables` are descendents of `TDataSets`, which is a virtual class.
 - `TTable.post()` writes a modified record to the database and `TTable.delete()` deletes the active record and positions the dataset on the next record.
@@ -250,10 +251,6 @@ Tour     *TAGV,*TempT,*BestT;
   std::string str = ss.str();
   Application->MessageBox(str.c_str(),"bug",MB_OK);
   ```
-
-## Some tips on implementing MDSAGV:
-- exclude these files when global searching in **VS Code**: `*.~cpp, *.~h, *.dsk, MCFModel.cpp,MCFModel2.cpp,MCFModel1_2.cpp`
-
  
 ## Unanswered Questions:
 - What is the use of `MCF_primal_iminus` (and hence `MCF_primal_net_simplex`)? what are jplus and iplus in them?
