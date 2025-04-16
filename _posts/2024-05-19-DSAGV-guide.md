@@ -122,10 +122,13 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 - If you right click on **Port and COntainer Job (static)** Form, you will find a `PopupMenu1` with two items `Generate Schedule` and `Reset Schedule`. `Generate Schedule` Event points to the above cpp line! WHY?? 
 
 ---
-## <code>HCDVRP.cpp</code> Simulator
+## <code>HCDVRP.cpp</code> Heuristic approach using Simulated Annealing
 
 `HCDVRP` consists of:
-- AGV simulation (such as its properties, its actions) + Container simulation.
+- This file uses the already known parameters of the `MCFModel1_3` such as Container Jobs and Time windows. 
+- It is also very much dependent of some kind of an initial solution. This initial solution can be attained by the use of `MCF_NSA_Solution` method in `MCFModel1_3`.
+<br>  
+Simulation parameters are as follows:
 
 ```c++
 struct Container:
@@ -163,8 +166,6 @@ Tour     *TAGV,*TempT,*BestT;
 - I really don't understand what the use of this *really* is. I guess, it just **loads information about ports (using `openport.cpp`) and the distance of each AGV and 
 - It modifies the **`PortLayoutTable`** db.
 - It then shows them in the "Route Table", specifying consecutive junction location and *TimeLanes*(??)
-- It also specifi
----
 
 ---
 
@@ -209,15 +210,6 @@ Tour     *TAGV,*TempT,*BestT;
 ---
 
 ## Helpful C++ Builder5 tricks
-- **Routine for builder5 code rename:**
-  1. copy component name & paste into `find` of vs code (as regex + (?!\d))
-  2. copy caption of the UI component and paste into our program
-  3. paste it into the cpp builder5 name and save
-  4. paste into the replacement phrase in vs code
-  5. find and replace e'm
-  6. do the same for the .h file and hit save
-  7. close the cpp file from the winxp + reopen it + reload + rebuild project
-
 - To identify a "missing" UI component, use the `view as text` option on the by right-clicking, in order to modify the corresponding `delphi` file.
 
 ---
@@ -232,6 +224,7 @@ Tour     *TAGV,*TempT,*BestT;
 - [x] the functionalities of `MCFModel`
 - [ ] `PREPAIR`
 - [ ] `PortBenchmark`, which is mostly a UI thing.
+- [ ] **What optimzation problem is this program trying to solve?** -> Read Ch 5 of *Port Automation* book by Rashidi.
 
 ## Bugs:
 1. There is a bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method
@@ -445,3 +438,4 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 };
 
 ```
+
