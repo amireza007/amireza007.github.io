@@ -97,6 +97,7 @@ long MCF_primal_net_simplex(MCF_network_p net);
 - portappdatabase is updated within MCFModel1_3.cpp.
 - `MCFModel1_3` uses a header file, called **`Global.h`**, which contains strtuctures `Port_Buff`, `Container_Buff[Maximum_Container_Jobs]`, `Crane_Buff[Maximum_Number_Cranes]`, `Job_Crane_Buff[Maximum_Number_Cranes]`, `Vehicle_Buff[Maximum_Number_Vehicles]`, `Route_Buff[Maximum_Number_Junctions];`, `Route_Buff2[Maximum_Number_Lanes]`
 - The part that uses`HCDVRP` </a>
+  
 ```c++
 void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 ```
@@ -104,7 +105,7 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 - `Container`, `Vehicle` and `Tour` of `HCDVRP` is used in `Intialize_SA_By_NSA_Solution()`!
 - `MCF_NSA_Solve(...)` from `MCFLIGHT1_0_6.cpp` and `Read_NSA_Solution(...)` is used in `RepairGraphModel(...)` in `MCFModel1_3.cpp`.
 - `DBGrid4` is the **AGV table** in the **Solution** groupbox.
-- **Update**: All ui components are being renamed by their _sensible_ meanings and captions and hints etc.
+  
 - `DBGrid5` is the one that \__I think\__ updates the `PortDoneJobTable.db`. The columns of `DBGrid5` are exactly the same as `PortDoneJobTable`.
 - So far, I have renamed **Groupboxes, Edits**. I won't rename _all labels_; 
 **just the ones in the `MCFModel1_3`.**
@@ -213,18 +214,7 @@ Tour     *TAGV,*TempT,*BestT;
 - To identify a "missing" UI component, use the `view as text` option on the by right-clicking, in order to modify the corresponding `delphi` file.
 
 ---
-## TODO List:
-- [x] `mcfdefs.h`, and `mcf.h`
-- [x] `PBLA1_3.cpp`, then `PSIMPLEX1_3.cpp`, and then `TREEUPS.cpp`
-- [x] play with Borland's BDE!
-- [x] Rename buttons and everything to their associated captions
-- [ ] `mcfutil.cpp`, `MCFLIGHT.cpp`, and `MCFModel`.
-- [x] The Job Generator (`portLayout.cpp`)
-- [x] `OUTPUT.cpp` as it is used by method `MCF_write_solution` in `MCFLIGHT.cpp`.
-- [x] the functionalities of `MCFModel`
-- [ ] `PREPAIR`
-- [ ] `PortBenchmark`, which is mostly a UI thing.
-- [ ] **What optimzation problem is this program trying to solve?** -> Read Ch 5 of *Port Automation* book by Rashidi.
+
 
 ## Bugs:
 1. There is a bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method
@@ -265,7 +255,7 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
   ```
   This code basically tell the program to not generate the jobs, if the port name exists in the `PortContainerTable.DB`, which is not an interesting trait!! <br>At least the original coder could've written some comments, telling "If you like to generate it, set this bool to false yourself". **NOT COOL!**
 
-## The structure of MCFNet:
+## The structure of MC_FNetwork:
 ```C++
   struct MCF_network
 {
@@ -439,3 +429,7 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 
 ```
 
+## TODO List:
+- [ ] **What optimzation problem is this program trying to solve?** -> Read Ch 5 of *Port Automation* book by Rashidi.
+- [ ] Fixing Gobgenerator Table view: When `Edit1` is set in the `MCFModel1_3` form, the generatod container jobs aren't shown. <br> 
+- [ ] The **key violation** error is caused by the program creating the same container jobs with the initials `C-BS-`. Fix that by clearing the `PortContainerTable.DB` first.
