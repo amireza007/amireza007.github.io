@@ -16,40 +16,147 @@ In order to make sense of the things I've written below, you need to **read comm
 The `PortApp1_0_10.cpp` file uses the following __forms__ and __translation units__:
 ```c++
 USERES("PortApp1_0_10.res");
-------------------------------------------------
-//These are all forms that are open in the project,
-//also available in "view form" (SHIFT+F12) in c++ builder5
+
+//Forms
 USEFORM("Main1_0_5.cpp", MainForm);
-USEFORM("MCFModel1_3.cpp", MCFAlgorithmForm);
+USEFORM("MCFModel1_3.cpp", MCFAlgorithmForm);//MCFModel1_3 also uses HCDVRP.cpp for Heuristic approach of Simulated Annealing (SA)
 USEFORM("OpenPort.cpp", OpenPortForm);
 USEFORM("PortAbout.cpp", AboutForm);
 USEFORM("PortAGV.cpp", PortAGVForm);
 USEFORM("PortContainer.cpp", PortContainerForm);
 USEFORM("PortLayout.cpp", PortLayoutForm);
-USEFORM("Splash.cpp", SplashForm);
 USEFORM("PortBenchmark.cpp", BenchOptionForm);
-------------------------------------------------
+///////
+
 USEUNIT("PBEAMPP4.cpp");
-USEUNIT("PBEAMPP1.cpp");
-USEUNIT("PBEAMPP2.cpp");
-USEUNIT("PBEAMPP3.cpp");
-USEUNIT("Dijkstra.cpp");
 USEUNIT("PFLOWUP.cpp");
 USEUNIT("TREEUP.cpp");
-USEUNIT("READMIN.Cpp");
-USEUNIT("PREPAIR.cpp");
-USEUNIT("OUTPUT.cpp");
+
 USEUNIT("PSIMPLEX1_3.cpp");
-USEUNIT("Mcfutil.cpp");
-USEUNIT("PBLA1_3.cpp");
+USEUNIT("Dijkstra.cpp");
+
+//stand-alone cpp!
+USEUNIT("READMIN.Cpp");
+
+USEUNIT("PREPAIR.cpp");// not included anywhere!
+
+USEUNIT("OUTPUT.cpp");
+
+
+USEUNIT("PBLA1_3.cpp"); //included as "PBLA.h" in PSIMPLEX
+
+USEUNIT("Mcfutil.cpp");//included in MCFLIGHT and PSIMPLEX
 USEUNIT("MCFLIGHT1_0_6.Cpp");
 USEUNIT("PSTART.cpp");
+
+USEFORM("Splash.cpp", SplashForm); //The starting screen
+//USEUNIT("PBEAMPP1.cpp");
+//USEUNIT("PBEAMPP2.cpp");
+//USEUNIT("PBEAMPP3.cpp");
+
 ```
 - Note that the keyword `extern` (explained [here](https://learn.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp?view=msvc-170)) is used for _private global variables (or external linkage)._ It is not necessary for __free functions__ and __non-const variables__. The `extern` keyword is used in `"MCFModel1_3.cpp"` to reference `MCF_NSA_Solve(...)` method defined in `MCFLIGHT1_0_6.Cpp`.
 - Remember that the **`portdatabase`** is in the **`Openport.cpp`**.
 - I might need `mcfutil` for the implementation of the nodes
 
 ---
+
+## Fundamental Port-related Entities
+- Fundamental entities (defined in `Global.h`) are the following:
+<details>
+  <summary><code>Struct port_buff</code></summary>
+
+  ```C++
+  String     Port ;
+  int        NumberOfBlockYard;
+  int        NumberOfWorkingPosition;
+  int        NumberOfAGVs  ;
+  int        NumberOfJobs  ;
+  int        NumberOfJunctions ;
+  int        NumberOfLanes ;
+  int        NumberOfZones ;
+  long       TotalEarlyTimes;
+  long       TotalLateTimes;
+  long       TotalQCWTimes;
+  long       TotalVWTimes;
+  long       TotalVTTimes;
+  long       TotalDoneJobs;
+  long       TotalEarlyJobs;
+  long       TotalLateJobs;
+  double     TotalDfApAc;
+  FILE      *Fout3;
+  ```
+
+</details>
+
+<details>
+  <summary><code>Struct Container_Buff [Maximum_Container_Jobs]</code></summary>
+
+  ```C++
+  String     IDStr         ;
+  String     SourcePointStr;
+  String     DestPointStr  ;
+  long int   ReadyTime     ;
+  long int   QCraneTime    ;
+  int        Vehicle       ;
+
+  unsigned char Empty      ;
+  unsigned char Done       ;
+  ```
+
+</details>
+<details>
+  <summary><code>Struct Vehicle_Buff</code></summary>
+
+  ```C++
+   String StartLoc;
+   int    Last_Completed_Temp;
+   int    Number_Of_Jobs;
+   int    Last_Completed_Time;
+   int    Number_Of_Done_Jobs;
+   int    Lane_No            ; // <=Number_of_Lanes
+   int    Time_in_Lane       ;
+   int    Number_of_Lanes    ;
+   int    Lane   [Maximum_Number_Lanes];
+   int    Cost_Temp;
+   int    PreJob_Temp;
+   int    No_Job_Temp;
+  ```
+
+</details>
+
+<details>
+  <summary><code>Struct Route_Buff</code></summary>
+
+  ```C++
+   int    Junction ;
+   String Location ;
+   int    NextJunc1;
+   int    NextLane1;
+   int    DurationLane1;
+   int    NextJunc2;
+   int    NextLane2;
+   int    DurationLane2;
+   int    NextJunc3;
+   int    NextLane3;
+   int    DurationLane3;
+  ```
+
+</details>
+
+<details>
+  <summary><code>Struct Route_Buff2</code></summary>
+  
+  ```C++
+   int    Duration;
+   int    Busy    ;
+   int    Vehicle ; // [Maximum_NAGV_In_Lan];
+  ```
+
+</details>
+
+-----
+
 ## <code>mcfdefs.h</code>, <code>mcf.h</code>
 - The `mcfdefs.h` contains the **fields** (parameters and nodes) of the `MCFModel` and `mcf.h` contains **methods**. 
 Examples of the components of `mcfdefs.h`: (A description of Nodes can be found [here](https://github.com/amireza007/amireza007.github.io/blob/master/assets/mcfdefs.pdf))
@@ -115,12 +222,12 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 ## `openport.cpp`, `portAGV.cpp`, `PortLayout` and `PortContainer.cpp`
 - In `openport`, there is the **`PortTable`** that's referenced in `portAGV`, `PortContainer`, `PortLayout`, and `MCFModel1_3`.
 
-## Job generator:
-- It's in a `MCFModel1_3.cpp` method:
+## Job generator (Generate Button in MCFModel1_3)
+- It exists as an `MCFModel1_3.cpp` method:
   ```c++
-  void __fastcall TMCFAlgorithmForm::Generate_ButtonClick(TObject *Sender)
+  void __fastcall TMCFAlgorithmForm::Generate_Button11Click(TObject *Sender)
   ```
-- If you right click on **Port and COntainer Job (static)** Form, you will find a `PopupMenu1` with two items `Generate Schedule` and `Reset Schedule`. `Generate Schedule` Event points to the above cpp line! WHY?? 
+- If you right click on **Port and Container Job (static)** Form, you will find a `PopupMenu1` with two items `Generate Schedule` and `Reset Schedule`. `Generate Schedule` Event points to the above cpp line! WHY?? 
 
 ---
 ## <code>HCDVRP.cpp</code> Heuristic approach using Simulated Annealing
@@ -216,12 +323,9 @@ Tour     *TAGV,*TempT,*BestT;
 ---
 
 
-## Bugs:
-1. There is a bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method
-   - **Fix**: changed the `Maximum_Number_Vehicles` from 50 to 250
-2. 
 
-## Shortcomings of the DSAGV
+
+## Deficiencies of the DSAGV
 - The App resets form sizes after close.
 - App opens multiple windows for different forms, why?!
 
@@ -430,6 +534,10 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 ```
 
 ## TODO List:
+- [X] Bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method.<br>
+  - **Fix**: changed the `Maximum_Number_Vehicles` from 50 to 250
 - [ ] **What optimzation problem is this program trying to solve?** -> Read Ch 5 of *Port Automation* book by Rashidi.
 - [ ] Fixing Gobgenerator Table view: When `Edit1` is set in the `MCFModel1_3` form, the generatod container jobs aren't shown. <br> 
 - [ ] The **key violation** error is caused by the program creating the same container jobs with the initials `C-BS-`. Fix that by clearing the `PortContainerTable.DB` first.
+- [ ] In order to write doxygen, you should write **documentation comments** inside source codes.
+- [ ] 
