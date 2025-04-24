@@ -182,7 +182,7 @@ extern long MCF_primal_net_simplex (MCF_network_p net);
 
 ---
 ## <code>PBLA1_3.cpp</code>, <code>PXIMPLEX1_3.cpp</code>, <code>TREEUPS.cpp</code>, <code>MCFLIGHT1_0_6.cpp</code>
-- <a href="#pbla1_3cpp-and-psimplexcpp">`PBLA`</a> and <a href="#pbla1_3cpp-and-psimplexcpp">`PSIMPLEX1_3`</a> and <a href="#mcfutilcpp-mcflight1_0_6cpp-and-mcfmodel1_3cpp">`MCFLIGHT1_0_6`</a> are closely related! There are some useful comments in them, none of which I understand as I still haven't reviewed the mcf problem and NSA algorithm thoroughly.
+- `PBLA` and `PSIMPLEX1_3` and `MCFLIGHT1_0_6` are closely related! There are some useful comments in them, none of which I understand as I still haven't reviewed the mcf problem and NSA algorithm thoroughly.
 
 ---
 ## <code>PBLA1_3.cpp</code> and <code>PSIMPLEX.cpp</code>
