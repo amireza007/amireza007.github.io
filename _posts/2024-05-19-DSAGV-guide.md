@@ -313,12 +313,6 @@ Tour     *TAGV,*TempT,*BestT;
 7. `PortStatusJobTable.db`
 8. `PortTable.db`
 
-
----
-
-## Helpful C++ Builder5 tricks
-- To identify a "missing" UI component, use the `view as text` option on the by right-clicking, in order to modify the corresponding `delphi` file.
-
 ---
 
 
@@ -359,7 +353,10 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
   This code basically tell the program to not generate the jobs, if the port name exists in the `PortContainerTable.DB`, which is not an interesting trait!! <br>At least the original coder could've written some comments, telling "If you like to generate it, set this bool to false yourself". **NOT COOL!**
 
 ## The structure of MC_FNetwork:
-```C++
+<details>
+  <summary>MCF_network</summary>
+
+  {% highlight c++ %}
   struct MCF_network
 {
     /** Number of nodes.
@@ -529,8 +526,16 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
     MCF_arc_p (*find_bea) ( MCF_arc_p max_cost_arc, int algorithm_opt,long m, MCF_arc_p arcs, MCF_arc_p stop_arcs,
                             MCF_cost_p red_cost_of_bea );
 };
+{% endhighlight %}
+</details>
 
-```
+----
+
+## The Dynamic Approach
+### How dynamic approach implemented
+
+### Dynamic approach Bugs
+---
 
 ## TODO List:
 - [X] Bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method.<br>
@@ -539,4 +544,5 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 - [ ] Fixing Gobgenerator Table view: When `Edit1` is set in the `MCFModel1_3` form, the generatod container jobs aren't shown. <br> 
 - [ ] The **key violation** error is caused by the program creating the same container jobs with the initials `C-BS-`. Fix that by clearing the `PortContainerTable.DB` first.
 - [ ] In order to write doxygen, you should write **documentation comments** inside source codes.
-- [ ] 
+
+
