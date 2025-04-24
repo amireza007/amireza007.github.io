@@ -140,7 +140,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
    int    NextJunc3;
    int    NextLane3;
    int    DurationLane3;
-  {% endhiglight %}
+  {% endhighlight %}
 
 </details>
 
