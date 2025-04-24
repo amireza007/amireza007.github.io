@@ -62,12 +62,11 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 ---
 
 ## Fundamental Port-related Entities
-{::options parse_block_html="true" /}
 - Fundamental entities (defined in `Global.h`) are the following:
 <details>
   <summary><code>Struct port_buff</code></summary>
 
-  ```C++
+{% highlight c++ %}
   String     Port ;
   int        NumberOfBlockYard;
   int        NumberOfWorkingPosition;
@@ -86,7 +85,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
   long       TotalLateJobs;
   double     TotalDfApAc;
   FILE      *Fout3;
-  ```
+{% endhighlight %}
 
 </details>
 
@@ -155,7 +154,6 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
   ```
 
 </details>
-{::options parse_block_html="false" /}
 -----
 
 ## <code>mcfdefs.h</code>, <code>mcf.h</code>
