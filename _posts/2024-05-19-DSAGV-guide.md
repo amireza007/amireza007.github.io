@@ -62,6 +62,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 ---
 
 ## Fundamental Port-related Entities
+{::options parse_block_html="true" /}
 - Fundamental entities (defined in `Global.h`) are the following:
 <details>
   <summary><code>Struct port_buff</code></summary>
@@ -106,7 +107,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 
 </details>
 <details>
-  <summary><code>Struct Vehicle_Buff</code></summary>
+  <summary markdown="span"><code>Struct Vehicle_Buff</code></summary>
 
   ```C++
    String StartLoc;
@@ -126,7 +127,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 </details>
 
 <details>
-  <summary><code>Struct Route_Buff</code></summary>
+  <summary markdown="span"><code>Struct Route_Buff</code></summary>
 
   ```C++
    int    Junction ;
@@ -145,7 +146,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 </details>
 
 <details>
-  <summary><code>Struct Route_Buff2</code></summary>
+  <summary markdown="span"><code>Struct Route_Buff2</code></summary>
   
   ```C++
    int    Duration;
@@ -154,7 +155,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
   ```
 
 </details>
-
+{::options parse_block_html="false" /}
 -----
 
 ## <code>mcfdefs.h</code>, <code>mcf.h</code>
