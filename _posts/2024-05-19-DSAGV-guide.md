@@ -92,7 +92,7 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 <details>
   <summary><code>Struct Container_Buff [Maximum_Container_Jobs]</code></summary>
 
-  ```C++
+  {% highlight c++ %}
   String     IDStr         ;
   String     SourcePointStr;
   String     DestPointStr  ;
@@ -102,13 +102,13 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
 
   unsigned char Empty      ;
   unsigned char Done       ;
-  ```
+  {% endhighlight %}
 
 </details>
 <details>
   <summary markdown="span"><code>Struct Vehicle_Buff</code></summary>
 
-  ```C++
+  {% highlight c++ %}
    String StartLoc;
    int    Last_Completed_Temp;
    int    Number_Of_Jobs;
@@ -121,14 +121,14 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
    int    Cost_Temp;
    int    PreJob_Temp;
    int    No_Job_Temp;
-  ```
+  {% endhighlight %}
 
 </details>
 
 <details>
   <summary markdown="span"><code>Struct Route_Buff</code></summary>
 
-  ```C++
+  {% highlight c++ %}
    int    Junction ;
    String Location ;
    int    NextJunc1;
@@ -140,18 +140,18 @@ USEFORM("Splash.cpp", SplashForm); //The starting screen
    int    NextJunc3;
    int    NextLane3;
    int    DurationLane3;
-  ```
+  {% endhiglight %}
 
 </details>
 
 <details>
   <summary markdown="span"><code>Struct Route_Buff2</code></summary>
   
-  ```C++
+  {% highlight c++ %}
    int    Duration;
    int    Busy    ;
    int    Vehicle ; // [Maximum_NAGV_In_Lan];
-  ```
+  {% endhighlight %}
 
 </details>
 -----
