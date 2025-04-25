@@ -544,5 +544,5 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 - [ ] Fixing Gobgenerator Table view: When `Edit1` is set in the `MCFModel1_3` form, the generatod container jobs aren't shown. <br> 
 - [ ] The **key violation** error is caused by the program creating the same container jobs with the initials `C-BS-`. Fix that by clearing the `PortContainerTable.DB` first.
 - [ ] In order to write doxygen, you should write **documentation comments** inside source codes.
-
+- [ ] **Urgent**: line 2237, `NumContainers` looks bad! (it's related to `NumberOfContainers` in `AGVTTable.DB`, which doesn't make sense, if you check the DB.)
 
