@@ -201,7 +201,6 @@ long MCF_primal_net_simplex(MCF_network_p net);
 ---
 ## <code>Mcfutil.cpp</code>, <code>MCFLIGHT1_0_6.cpp</code>, and <code>MCFModel1_3.cpp</code>
 - portappdatabase is updated within MCFModel1_3.cpp.
-- `MCFModel1_3` uses a header file, called **`Global.h`**, which contains strtuctures `Port_Buff`, `Container_Buff[Maximum_Container_Jobs]`, `Crane_Buff[Maximum_Number_Cranes]`, `Job_Crane_Buff[Maximum_Number_Cranes]`, `Vehicle_Buff[Maximum_Number_Vehicles]`, `Route_Buff[Maximum_Number_Junctions];`, `Route_Buff2[Maximum_Number_Lanes]`
 - The part that uses`HCDVRP` </a>
   
 ```c++
@@ -213,8 +212,7 @@ void TMCFAlgorithmForm::Handle_Multi_Load_AGVS();
 - `DBGrid4` is the **AGV table** in the **Solution** groupbox.
   
 - `DBGrid5` is the one that \__I think\__ updates the `PortDoneJobTable.db`. The columns of `DBGrid5` are exactly the same as `PortDoneJobTable`.
-- So far, I have renamed **Groupboxes, Edits**. I won't rename _all labels_; 
-**just the ones in the `MCFModel1_3`.**
+
 - The `BenchOptionForm` recurs multiple times in the source code of `MCFModel1_3`. **Pay Attention to it!**
 
 ---
