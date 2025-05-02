@@ -543,4 +543,4 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 - [ ] The **key violation** error is caused by the program creating the same container jobs with the initials `C-BS-`. Fix that by clearing the `PortContainerTable.DB` first.
 - [ ] In order to write doxygen, you should write **documentation comments** inside source codes.
 - [ ] **Urgent**: line 2237, `NumContainers` looks bad! (it's related to `NumberOfContainers` in `AGVTTable.DB`, which doesn't make sense, if you check the DB.)
-
+- [ ] `PBEAMPP1,PBEAMPP2,PBEAMPP3,PBEAMPP4`, which all stand for **Primal Basis Entering Arc, Multiple Partial Pricing** and is part of **SPEC2000** testing (written by A. Lobel), are the same cpps, just differing in the value of **K** and **B**. Could be easilly fixed.
