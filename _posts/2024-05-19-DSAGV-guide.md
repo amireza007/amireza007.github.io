@@ -351,6 +351,123 @@ Tour     *TAGV,*TempT,*BestT;
 <details>
   <summary> MCF_node</summary>
   {% highlight c++ %}
+  struct MCF_node
+{
+    /** Ident flag.
+     *
+     * This variable is only used to identify status of each node.
+     */
+    int ident;
+
+    /** Pre_Ident flag.
+     *
+     * This variable is only used to identify previous status of each node.
+     */
+    int pre_ident;
+
+    /** Node identifier.
+     *
+     * This variable is only used to assign some identification to each node.
+     * Typically, as for the DIMACS format, nodes are indexed from 1 to n, where
+     * n denotes the number of nodes.  */
+    long number;
+
+
+    /** predecessor node.
+     *
+     */
+    MCF_node_p pred;
+
+
+    /** First child node.
+     *
+     */
+    MCF_node_p child;
+
+
+    /** Next child of predecessor.
+     *
+     */
+    MCF_node_p right_sibling;     
+
+
+    /** Previous child of predecessor.
+     *
+     */
+    MCF_node_p left_sibling;     
+    
+
+    /** Number of nodes (including this one) up to the root node.
+     *
+     */
+    long subtreesize; 
+    
+
+    /** The node's basic arc.
+     *
+     */
+    MCF_arc_p basic_arc; 
+    
+
+    /** Orientation of the node's basic arc.
+     *
+     * This variable stands for the orientation of the node's basic arc.  The
+     * value UP (= 1) means that the arc points to the father, and the
+     * value DOWN (= 0) means that the arc points from the father to this node.
+     *
+     */
+    long orientation; 
+
+
+    /** First arc of the neighbour list of arcs leaving this node.
+     *
+     */
+    MCF_arc_p firstout;
+    
+
+    /** First arc of the neighbour list of arcs entering this node.
+     *
+     */
+    MCF_arc_p firstin;
+    
+
+    /** Supply/Demand $b_i$ of this node.
+     *
+     * A node $i$ is called a supply node, a demand node, or a transshipment
+     * node depending upon whether $b_i$ is larger than, smaller than, or equal
+     * to zero, respectively.
+     * */
+    MCF_flow_t balance;  
+    
+
+    /** Dual node multipliers.
+     *
+     * This variable stands for the node potential corresponding with the flow
+     * conservation constrait of this node.
+     *
+     */
+    MCF_cost_t potential; 
+    
+
+    /** Flow value of the node's basic arc.
+     *
+     */
+    MCF_flow_t flow;
+    
+
+    /** Temporary variable.
+     *
+     * This is a temporary variable, which you can use as you like.
+     *
+     */
+    long mark;
+};
+{% endhighlight %}
+</details>
+
+<details>
+  <summary> MCF_arc</summary>
+  {% highlight c++ %}
   struct MCF_arc
 {
     /** Arc Previous status.
