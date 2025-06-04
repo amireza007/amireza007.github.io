@@ -348,11 +348,13 @@ Tour     *TAGV,*TempT,*BestT;
   This code basically tell the program to not generate the jobs, if the port name exists in the `PortContainerTable.DB`, which is not an interesting trait!! <br>At least the original coder could've written some comments, telling "If you like to generate it, set this bool to false yourself". **NOT COOL!**
 
 ## The structure of MCF_Network:
+<br> Three important components: **nodes, arcs, network**
+
 <details>
   <summary> MCF_node</summary>
   {% highlight c++ %}
   struct MCF_node
-{
+  {
     /** Ident flag.
      *
      * This variable is only used to identify status of each node.
@@ -461,8 +463,8 @@ Tour     *TAGV,*TempT,*BestT;
      *
      */
     long mark;
-};
-{% endhighlight %}
+  };
+  {% endhighlight %}
 </details>
 
 <details>
