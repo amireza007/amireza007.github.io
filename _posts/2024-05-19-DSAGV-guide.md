@@ -322,7 +322,7 @@ Tour     *TAGV,*TempT,*BestT;
 
 ## Some C++ Builder 5 tips:
 -  when opening a builder project, move cursor on a resource and right click and select `open file under cursor` to open the corresponding file, in place!
-- a way of printing bugs! **stupid Builder 5!!!!!**
+- a way of printing bugs! **stupid software!!!!!**
   ```c++
   std::stringstream ss;
   ss << Port_Buff.NumberOfAGVs;
@@ -337,9 +337,6 @@ Tour     *TAGV,*TempT,*BestT;
 - (***Very Important Question):*** How **container jobs** **database (PortContainerTable.db)** is created and updated??
 - It's interesting, When you run the installed app, the solutions are displayed. However, when you compile the version 10, no solutions are appeared!
 
-## Update:
-I have switched to a very old commit of repo since `.dfm` files used in this *era* are binary (newer versions aren't!) and, hence, un-nameable!! Many names, (tables, lables, buttons, etc) are now deleted and should be found according to their context.
-
 ## Update 1/23/2025:
 - The method associated to `Button11`, which is **Generate** button in static fashion, is the **Heart of the `MCFModel1_3.cpp` file** containing the schedule generation for the job and connecting all previously written methods in `MCFModel1_3.cpp`.
 - Similarly, there is `Button7Click`, which is the intention of Dr. Rashidi to give out the source code. 
@@ -350,7 +347,116 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
   ```
   This code basically tell the program to not generate the jobs, if the port name exists in the `PortContainerTable.DB`, which is not an interesting trait!! <br>At least the original coder could've written some comments, telling "If you like to generate it, set this bool to false yourself". **NOT COOL!**
 
-## The structure of MC_FNetwork:
+## The structure of MCF_Network:
+<details>
+  <summary> MCF_node</summary>
+  {% highlight c++ %}
+  struct MCF_arc
+{
+    /** Arc Previous status.
+     *
+     * This variable shows the previous arc status. Feasible is BASIC
+     * (for basic arcs), MCF\_AT\_LOWER\_BOUND (nonbasic arcs set to lower
+     * bound), MCF\_AT\_UPPER\_BOUND (nonbasic arcs set to the upper bound),
+     * MCF\_AT\_ZERO (nonbasis arcs set to zero), or FIXED (arcs fixed to
+     * zero and being not considered by the optimization).
+     *
+     */
+    long pre_ident;
+    /** Tail node.
+     *
+     */
+    MCF_node_p tail;
+
+
+    /** Head node.
+     *
+     */
+    MCF_node_p head;
+
+
+    /** Next arc of the neighbour list of arcs leaving the tail node.
+     *
+     */
+    MCF_arc_p nextout;
+
+
+    /** Next arc of the neighbour list of arcs entering the head node.
+     *
+     */
+    MCF_arc_p nextin;
+
+
+    /** Arc costs.
+     *
+     * This variable stands for the arc cost (or weight).
+     *
+     * Our primal feasible starting basis consists just of artificial arcs
+     * (corresponding to a slack basis), and all originally defined arcs are
+     * first nonbasic at their lower bounds. The costs of the artificial arcs
+     * are set to MAX\_ART\_COST, which is defined in the file mcfdefs.h. It is
+     * easy to see that any feasible and optimal solution with artificial arcs
+     * is also optimal and feasible for the original problem without artificials
+     * iff no artifical arc yields a nonzero flow value. If, however, a solution
+     * contains an artificial arc with positive flow, the original problem is
+     * either indeed infeasible or the MAX\_ART\_COST is just too small compared
+     * to the cost coefficients of the original arcs. If the latter is the case,
+     * increase MAX\_ART\_COST, but we also strongly recommend to use then
+     * floating point arithmetic!
+     *  */
+    MCF_cost_t cost;
+
+
+    /** Arc upper bound.
+     *
+     * This variable stands for the arc upper bound value. Note that an
+     * unbounded upper bound is set to UNBOUNDED, which is defined in the file
+     * mcfdefs.h. Per default, UNBOUNDED is set to $10^9$.  Note, this value may
+     * be too small for your purposes, and you should increase it appropriately.
+     * However, we strongly recommend to use then floating point arithmetic
+     * (define MCF\_FLOAT)!
+     *
+     */
+    MCF_flow_t upper;
+
+
+    /** Arc lower bound.
+     *
+     * This variable stands for the arc lower bound value. Note, this variable
+     * is only active if the MCF\_LOWER\_BOUNDS variable is defined! An negative
+     * unbounded lower bound is set to -UNBOUNDED, see also the arc upper bound.
+     *
+     */
+#ifdef MCF_LOWER_BOUNDS
+    MCF_flow_t lower;
+#endif
+
+
+    /** Arc flow value.
+     *
+     * This variable stands for the arc's flow value. Note that the flow value
+     * is not set within the main (primal or dual) iteration loop; actually, it
+     * can only be computed using the function primal\_obj().
+     *
+     */
+    MCF_flow_t flow;
+
+
+    /** Arc status.
+     *
+     * This variable shows the current arc status. Feasible is BASIC
+     * (for basic arcs), MCF\_AT\_LOWER\_BOUND (nonbasic arcs set to lower 
+     * bound), MCF\_AT\_UPPER\_BOUND (nonbasic arcs set to the upper bound),
+     * MCF\_AT\_ZERO (nonbasis arcs set to zero), or FIXED (arcs fixed to 
+     * zero and being not considered by the optimization).
+     *
+     */
+    long ident;
+};
+{% endhighlight %}
+</details>
+
+
 <details>
   <summary>MCF_network</summary>
 
@@ -531,7 +637,8 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 
 ## The Dynamic Approach
 ### How dynamic approach implemented
-
+- Dynamic Approach (DA) uses <ins> `Insert_Containers_To_Table(int CN)`</ins> to generate containers, which is **odd** with consideration of using the `JobGenerator` (AKA `button11click`) method.  
+- Both Static and Dynamic write into **table2**, which accesses`portContainerTable.db`. 
 ### Dynamic approach Bugs
 ---
 
@@ -539,9 +646,9 @@ I have switched to a very old commit of repo since `.dfm` files used in this *er
 - [X] Bug in `Honk Kong` part in `MCFModel1_3` in `Port_Names_Static_ListBoxClick` method.<br>
   - **Fix**: changed the `Maximum_Number_Vehicles` from 50 to 250
 - [ ] **What optimzation problem is this program trying to solve?** -> Read Ch 5 of *Port Automation* book by Rashidi.
-- [ ] Fixing Gobgenerator Table view: When `Edit1` is set in the `MCFModel1_3` form, the generatod container jobs aren't shown. <br> 
+- [ ] Fixing Job generator Table view: When `Edit1` is set in the `MCFModel1_3` form, the generatod container jobs aren't shown. <br> 
 - [ ] The **key violation** error is caused by the program creating the same container jobs with the initials `C-BS-`. Fix that by clearing the `PortContainerTable.DB` first.
 - [ ] In order to write doxygen, you should write **documentation comments** inside source codes.
 - [ ] **Urgent**: line 2237, `NumContainers` looks bad! (it's related to `NumberOfContainers` in `AGVTTable.DB`, which doesn't make sense, if you check the DB.)
-- [ ] `PBEAMPP1,PBEAMPP2,PBEAMPP3,PBEAMPP4`, which all stand for **Primal Basis Entering Arc, Multiple Partial Pricing** and is part of **SPEC2000** testing (written by A. Lobel), are the same cpps, just differing in the value of **K** and **B**. Could be easilly fixed.
-- [ ] `PBEAMPP`, `PBLA`, `PSIMPLEX`, `mcf` (implementations of MCF are in `MCFLight1_0_6`), `PFOLLOWUP`, `TREEUP`,`PSTART`
+- [ ] `PBEAMPP1,PBEAMPP2,PBEAMPP3,PBEAMPP4`, which all stand for **Primal Basis Entering Arc, Multiple Partial Pricing** and is part of **SPEC2000** testing (written by A. Loebel), are the same cpps, just differing in the value of **K** and **B**. Could be easilly fixed.
+- [ ] `PBEAMPP`, `PBLA`, `PSIMPLEX`, `mcf` (implementations of MCF are in `mcfutil`), `PFOLLOWUP`, `TREEUP`,`PSTART`, `MCFLIGHT1_0_6` (NSA solving)
