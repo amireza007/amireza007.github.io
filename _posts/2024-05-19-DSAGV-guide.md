@@ -754,6 +754,10 @@ Tour     *TAGV,*TempT,*BestT;
 
 ----
 
+## Special case of MCF for AGVs, MCF_AGV graph and:
+
+### sym
+
 ## The Dynamic Approach
 ### How dynamic approach implemented
 - Dynamic Approach (DA) uses <ins> `Insert_Containers_To_Table(int CN)`</ins> to generate containers, which is **odd** with consideration of using the `JobGenerator` (AKA `button11click`) method.  
