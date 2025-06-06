@@ -351,7 +351,7 @@ Tour     *TAGV,*TempT,*BestT;
 <br> Three important components: **nodes, arcs, network**
 
 <details>
-  <summary> MCF_node</summary>
+  <summary><b> <code>MCF_node</code></b></summary>
   {% highlight c++ %}
   struct MCF_node
   {
@@ -468,7 +468,7 @@ Tour     *TAGV,*TempT,*BestT;
 </details>
 
 <details>
-  <summary> MCF_arc</summary>
+  <summary><b> <code>MCF_arc</code></b></summary>
   {% highlight c++ %}
   struct MCF_arc
 {
@@ -577,7 +577,7 @@ Tour     *TAGV,*TempT,*BestT;
 
 
 <details>
-  <summary>MCF_network</summary>
+  <summary><b> <code>MCF_network</code></b></summary>
 
   {% highlight c++ %}
   struct MCF_network
