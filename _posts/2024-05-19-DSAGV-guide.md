@@ -754,9 +754,10 @@ Tour     *TAGV,*TempT,*BestT;
 
 ----
 
-## Special case of MCF for AGVs, MCF_AGV graph and:
+## The Model: MCF_AGV graph:
 
-### sym
+### symbols and variables:
+- $$t_i$$: appointment time of job i at the quayside. 
 
 ## The Dynamic Approach
 ### How dynamic approach implemented
