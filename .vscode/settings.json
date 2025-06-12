@@ -5,7 +5,8 @@
   "prettier.trailingComma": "none",
   // Shopify Liquid
   "files.associations": {
-    "*.html": "liquid"
+    "*.html": "liquid",
+    "iosfwd": "cpp"
   },
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
