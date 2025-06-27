@@ -7,3 +7,5 @@ gem 'jekyll-compose', group: [:jekyll_plugins]
 group :test do
   gem "html-proofer", "~> 5.0"
 end
+
+gem 'jekyll-admin', group: :jekyll_plugins
