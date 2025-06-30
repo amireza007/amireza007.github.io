@@ -14,7 +14,7 @@ _site
 # NPM dependencies
 node_modules
 package-lock.json
-
+MathJax
 # IDE configurations
 .idea
 .vscode
