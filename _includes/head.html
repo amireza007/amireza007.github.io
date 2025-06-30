@@ -8,7 +8,12 @@
     name="viewport"
     content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
   >
-  <script type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  {% assign example_file = site.static_files | where: 'path', '/MathJax/MathJax.js' %}
+  {% if example_file.size > 0 %}
+    <script type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  {% endif %}
+
   {%- capture seo_tags -%}
     {% seo title=false %}
   {%- endcapture -%}
